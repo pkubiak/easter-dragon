@@ -5,6 +5,8 @@ const GRAVITY = 900.0;
 const COINS = document.createElement('img');COINS.src='src/gfx/coins.png';
 const EGGS = document.createElement('img');EGGS.src='src/gfx/eggs.png';
 const MOAI = document.createElement('img');MOAI.src='src/gfx/moai.png';
+const DRAGON = document.createElement('img');DRAGON.src='src/gfx/dragon.png';
+
 
 class Observer {
     constructor(){
@@ -24,6 +26,7 @@ class Observer {
     }
 }
 
+const SCALE = 4;
 class Dragon {
     constructor() {
         this.x = 0;
@@ -31,6 +34,7 @@ class Dragon {
         this.speed = 100;
         this.vy = 200.0;
         this.hasPhysic = false;
+        this.kind = Math.floor(5*Math.random());
     }
 
     flap() {
@@ -45,12 +49,9 @@ class Dragon {
         }
     }
 
-    draw(ctx, offset) {
-        ctx.beginPath();
-        ctx.fillStyle = 'purple';
-        ctx.ellipse(this.x - offset, this.y, 20, 20, 0, 0, 2.0*Math.PI);
-        ctx.fill();
-
+    draw(ctx, offset, timestamp) {
+        let frame = Math.floor(4*timestamp/1000) % 2;
+        ctx.drawImage(DRAGON, 350*this.kind, frame*240, 350, 240, this.x - offset - 175/SCALE, this.y - 120/SCALE, 350/SCALE, 240/SCALE);
     }
 }
 
@@ -282,7 +283,7 @@ class World {
                     item.doCollision(this);
                 }
             }
-            this.dragon.draw(this.ctx, offsetX);
+            this.dragon.draw(this.ctx, offsetX, timestamp);
 
             // Create new obstacles
             let timeToSpawn = this.items[0] && this.items[this.items.length-1].x - offsetX < WIDTH + World.SPACING;

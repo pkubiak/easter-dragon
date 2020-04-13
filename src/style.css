@@ -11,11 +11,13 @@ body {
 main {
     width: 400px;
     height: 600px;
-    background: url(gfx/layer-1.png);
+    background: url(gfx/sky.png);
     background-size: auto 600px;
     position: absolute;
     left: 50%; top: 50%;
     transform: translate(-50%, -50%);
+    animation: paralax 160s linear infinite;
+
 }
 
 #waves_front {
@@ -38,16 +40,15 @@ main {
 #score {
     position: absolute;
     right: 0; top: 0;
-    background: orange;
+    background: #fffa;
     font-size: 30px;
     padding: 6px;
 }
 
 canvas {
     /* background: orange; */
-    background: url(gfx/layer-2.png);
-    background-size: auto 600px;
-    animation: paralax 160s linear infinite;
+    /* background: url(gfx/sky.png); */
+    /* background-size: auto 600px; */
 }
 
 @keyframes paralax {
@@ -62,7 +63,7 @@ canvas {
     position: absolute;
     left: 0;
     top: 0;
-    background: red;
+    background: #fffa;
     font-size: 30px;
     padding: 6px;
 }
@@ -78,3 +79,5 @@ canvas {
     font-weight: bold;
     text-align: center;
 }
+
+/* 340x240 */
