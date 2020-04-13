@@ -1,0 +1,80 @@
+body, html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    background: #272b30;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    width: 400px;
+    height: 600px;
+    background: url(gfx/layer-1.png);
+    background-size: auto 600px;
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#waves_front {
+    height: 36px;
+    width: 100%;
+    background: url(gfx/waves2.gif);
+    background-position-x: 64px;
+    position: absolute;
+    bottom: 0;
+}
+#waves_back {
+    height: 80px;
+    background: url(gfx/waves2.gif);
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+}
+
+#score {
+    position: absolute;
+    right: 0; top: 0;
+    background: orange;
+    font-size: 30px;
+    padding: 6px;
+}
+
+canvas {
+    /* background: orange; */
+    background: url(gfx/layer-2.png);
+    background-size: auto 600px;
+    animation: paralax 160s linear infinite;
+}
+
+@keyframes paralax {
+    from {background-position-x: 0;}
+    to {background-position-x: 1000%;}
+}
+
+#eggs::before {
+    content: "Eggs:";
+}
+#eggs {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: red;
+    font-size: 30px;
+    padding: 6px;
+}
+
+#level {
+    /* background: gold; */
+    position: absolute;
+    width: 100%;
+    bottom: -30px;
+    font-size: 20px;
+    color: gold;
+    text-shadow: #ddd;
+    font-weight: bold;
+    text-align: center;
+}
