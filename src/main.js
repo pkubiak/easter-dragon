@@ -176,7 +176,7 @@ class World {
         this.ctx = canvas.getContext('2d');
         canvas.addEventListener('click', (event) => this.dragon.flap());
         document.addEventListener('keypress', (event) => this.dragon.flap());
-        this.last_timestamp;
+        this.last_timestamp = 0;
         this.dragon = new Dragon();
         this.o = new Observer();
 
@@ -254,7 +254,9 @@ class World {
 
     update(timestamp) {
         let elapsed = timestamp - this.last_timestamp, offsetX = 0;
-        if(this.last_timestamp && elapsed > 15) {
+        if(elapsed > 15) {
+            this.last_timestamp = timestamp;
+
             this.dragon.update(elapsed);
 
             // Dragon fly bellow sea level
@@ -303,8 +305,9 @@ class World {
                     this.nextLevel();
                 }
             }
+            
+
         }
-        this.last_timestamp = timestamp;
 
         return true;
     }
@@ -322,7 +325,7 @@ function oninit() {
 
 
     let callback = (timestamp) => {
-        if(w.update(timestamp))
+        if(!STOP && w.update(timestamp))
             window.requestAnimationFrame(callback);
     }
 
